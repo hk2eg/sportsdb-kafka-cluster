@@ -1,0 +1,29 @@
+{
+  "name": "clickhouse-sink",
+  "config": {
+    "connector.class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+    "tasks.max": "4",
+
+    "topics": "validated.soccer.event,validated.soccer.team,validated.soccer.league,validated.soccer.venue,validated.soccer.schedule,validated.soccer.live_score,validated.soccer.event_stats,validated.soccer.player",
+
+    "hostname": "",
+    "port":     "8443",
+    "ssl":      "true",
+    "database": "default",
+    "username": "default",
+    "password": "",
+
+    "topic2TableMap": "validated.soccer.event=validated_event,validated.soccer.team=validated_team,validated.soccer.league=validated_league,validated.soccer.venue=validated_venue,validated.soccer.schedule=validated_schedule,validated.soccer.live_score=validated_live_score,validated.soccer.event_stats=validated_event_stats,validated.soccer.player=validated_player",
+
+    "key.converter":   "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+
+    "auto.create.table": "true",
+    "auto.evolve.table": "true",
+
+    "errors.tolerance":           "all",
+    "errors.log.enable":          "true",
+    "errors.log.include.messages":"true"
+  }
+}
